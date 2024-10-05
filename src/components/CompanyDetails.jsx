@@ -36,6 +36,7 @@ const fetchCompanyDetails = async (ticker) => {
 };
 
 const formatBillions = (value) => `$${value.toFixed(2)}B`;
+const formatPercentage = (value) => `${value}%`;
 
 const CompanyDetails = () => {
   const { ticker } = useParams();
@@ -97,9 +98,9 @@ const CompanyDetails = () => {
               {companyDetails.quarterlyData.map((quarter) => (
                 <TableRow key={quarter.quarter}>
                   <TableCell>{quarter.quarter}</TableCell>
-                  <TableCell>{quarter["Google Trends"]}</TableCell>
-                  <TableCell>{quarter["Website Traffic"]}</TableCell>
-                  <TableCell>{quarter.instagram}</TableCell>
+                  <TableCell>{formatPercentage(quarter["Google Trends"])}</TableCell>
+                  <TableCell>{formatPercentage(quarter["Website Traffic"])}</TableCell>
+                  <TableCell>{formatPercentage(quarter.instagram)}</TableCell>
                   <TableCell>{formatBillions(quarter.altInsightsIndex)}</TableCell>
                   <TableCell>{formatBillions(quarter.analystEstimate)}</TableCell>
                 </TableRow>
