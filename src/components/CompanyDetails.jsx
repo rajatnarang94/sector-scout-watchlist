@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import CompanyChart from "./CompanyChart";
+import CompanySummary from "./CompanySummary";
+import QuarterlyDataTable from "./QuarterlyDataTable";
 
 const fetchCompanyDetails = async (ticker) => {
   // This is a mock API call. Replace with actual API endpoint.
@@ -35,9 +37,6 @@ const fetchCompanyDetails = async (ticker) => {
   });
 };
 
-const formatBillions = (value) => `$${value.toFixed(2)}B`;
-const formatPercentage = (value) => `${value}%`;
-
 const CompanyDetails = () => {
   const { ticker } = useParams();
   const navigate = useNavigate();
@@ -56,10 +55,6 @@ const CompanyDetails = () => {
     return <p>No data available for this company.</p>;
   }
 
-  const latestData = companyDetails.quarterlyData[companyDetails.quarterlyData.length - 2]; // Excluding prediction
-  const recommendation = latestData.altInsightsIndex > latestData.analystEstimate ? "Buy" :
-    latestData.altInsightsIndex < latestData.analystEstimate ? "Sell" : "Hold";
-
   return (
     <div>
       <Button
@@ -69,54 +64,9 @@ const CompanyDetails = () => {
       >
         <ArrowLeft className="mr-2 h-4 w-4" /> Back to {sector} Sector
       </Button>
-      <h2 className="text-2xl font-bold mb-4">{companyDetails.name} ({companyDetails.ticker})</h2>
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Summary</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CompanyChart data={companyDetails.chartData} />
-        </CardContent>
-      </Card>
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Quarterly Data</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Quarter</TableHead>
-                <TableHead>Google Trends</TableHead>
-                <TableHead>Website Traffic</TableHead>
-                <TableHead>Instagram</TableHead>
-                <TableHead>AltInsights Index</TableHead>
-                <TableHead>Analyst Estimate</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {companyDetails.quarterlyData.map((quarter) => (
-                <TableRow key={quarter.quarter}>
-                  <TableCell>{quarter.quarter}</TableCell>
-                  <TableCell>{formatPercentage(quarter["Google Trends"])}</TableCell>
-                  <TableCell>{formatPercentage(quarter["Website Traffic"])}</TableCell>
-                  <TableCell>{formatPercentage(quarter.instagram)}</TableCell>
-                  <TableCell>{formatBillions(quarter.altInsightsIndex)}</TableCell>
-                  <TableCell>{formatBillions(quarter.analystEstimate)}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Latest Recommendation</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold">{recommendation}</p>
-        </CardContent>
-      </Card>
+      <h2 className="text-2xl font-bold mb-4">{ticker}</h2>
+      <CompanySummary chartData={companyDetails.chartData} />
+      <QuarterlyDataTable quarterlyData={companyDetails.quarterlyData} />
     </div>
   );
 };
