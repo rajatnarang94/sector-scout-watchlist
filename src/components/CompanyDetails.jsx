@@ -1,6 +1,8 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const fetchCompanyDetails = async (ticker) => {
@@ -25,6 +27,7 @@ const fetchCompanyDetails = async (ticker) => {
 
 const CompanyDetails = () => {
   const { ticker } = useParams();
+  const navigate = useNavigate();
   const { data: companyDetails, isLoading, error } = useQuery({
     queryKey: ["companyDetails", ticker],
     queryFn: () => fetchCompanyDetails(ticker),
@@ -39,6 +42,13 @@ const CompanyDetails = () => {
 
   return (
     <div>
+      <Button
+        variant="ghost"
+        onClick={() => navigate(-1)}
+        className="mb-4"
+      >
+        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Sector
+      </Button>
       <h2 className="text-2xl font-bold mb-4">{companyDetails.name} ({companyDetails.ticker})</h2>
       <Card className="mb-8">
         <CardHeader>
