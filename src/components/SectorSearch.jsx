@@ -52,7 +52,7 @@ const SectorSearch = () => {
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
 
-      {sectorData && (
+      {sectorData && sectorData.length > 0 && (
         <div>
           <h2 className="text-2xl font-bold mb-4">{searchTerm}</h2>
           <Table>
@@ -78,8 +78,8 @@ const SectorSearch = () => {
                   <TableCell>{company.googleTrends}%</TableCell>
                   <TableCell>{company.instagramLikes}%</TableCell>
                   <TableCell>{company.websiteTraffic}%</TableCell>
-                  <TableCell>${company.analystEstimate.toFixed(2)}</TableCell>
-                  <TableCell>${company.altInsightsIndex.toFixed(2)}</TableCell>
+                  <TableCell>${company.analystEstimate?.toFixed(2) ?? 'N/A'}</TableCell>
+                  <TableCell>${company.altInsightsIndex?.toFixed(2) ?? 'N/A'}</TableCell>
                   <TableCell>{company.recommendation}</TableCell>
                 </TableRow>
               ))}
