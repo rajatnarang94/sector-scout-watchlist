@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import SectorSearch from "./components/SectorSearch";
+import SectorResults from "./components/SectorResults";
 import Watchlist from "./components/Watchlist";
 import CompanyDetails from "./components/CompanyDetails";
 
@@ -19,6 +20,7 @@ const App = () => (
           <main className="container mx-auto px-4 py-8">
             <Routes>
               <Route path="/" element={<SectorSearch />} />
+              <Route path="/sector/:sector" element={<SectorResults />} />
               <Route path="/watchlist" element={<Watchlist />} />
               <Route path="/company/:ticker" element={<CompanyDetails />} />
             </Routes>
