@@ -14,26 +14,28 @@ const fetchCompanyDetails = async (ticker) => {
         ticker,
         name: "Example Company",
         quarterlyData: [
-          { quarter: "Q2 2022", googleTrends: 2000, websiteTraffic: 9800, instagram: 2290, altInsightsIndex: 1.4, analystEstimate: 1.3 },
-          { quarter: "Q3 2022", googleTrends: 2780, websiteTraffic: 3908, instagram: 2000, altInsightsIndex: 1.6, analystEstimate: 1.5 },
-          { quarter: "Q4 2022", googleTrends: 1890, websiteTraffic: 4800, instagram: 2181, altInsightsIndex: 1.5, analystEstimate: 1.4 },
-          { quarter: "Q1 2023", googleTrends: 2390, websiteTraffic: 3800, instagram: 2500, altInsightsIndex: 1.8, analystEstimate: 1.7 },
-          { quarter: "Q2 2023", googleTrends: 3490, websiteTraffic: 4300, instagram: 2800, altInsightsIndex: 1.7, analystEstimate: 1.6 },
-          { quarter: "Q3 2023", googleTrends: 3000, websiteTraffic: 4100, instagram: 2600, altInsightsIndex: 1.9, analystEstimate: 1.8 },
-          { quarter: "Q4 2023 (Predicted)", googleTrends: 3200, websiteTraffic: 4500, instagram: 2900, altInsightsIndex: 2.0, analystEstimate: 1.9 },
+          { quarter: "Q2 2022", "Google Trends": 2000, "Website Traffic": 9800, instagram: 2290, altInsightsIndex: 1.4, analystEstimate: 1.3 },
+          { quarter: "Q3 2022", "Google Trends": 2780, "Website Traffic": 3908, instagram: 2000, altInsightsIndex: 1.6, analystEstimate: 1.5 },
+          { quarter: "Q4 2022", "Google Trends": 1890, "Website Traffic": 4800, instagram: 2181, altInsightsIndex: 1.5, analystEstimate: 1.4 },
+          { quarter: "Q1 2023", "Google Trends": 2390, "Website Traffic": 3800, instagram: 2500, altInsightsIndex: 1.8, analystEstimate: 1.7 },
+          { quarter: "Q2 2023", "Google Trends": 3490, "Website Traffic": 4300, instagram: 2800, altInsightsIndex: 1.7, analystEstimate: 1.6 },
+          { quarter: "Q3 2023", "Google Trends": 3000, "Website Traffic": 4100, instagram: 2600, altInsightsIndex: 1.9, analystEstimate: 1.8 },
+          { quarter: "Q4 2023 (Predicted)", "Google Trends": 3200, "Website Traffic": 4500, instagram: 2900, altInsightsIndex: 2.0, analystEstimate: 1.9 },
         ],
         chartData: [
-          { name: 'Q2 2022', googleTrends: 2000, websiteTraffic: 9800, instagram: 2290, altInsightsIndex: 1.4, analystEstimate: 1.3 },
-          { name: 'Q3 2022', googleTrends: 2780, websiteTraffic: 3908, instagram: 2000, altInsightsIndex: 1.6, analystEstimate: 1.5 },
-          { name: 'Q4 2022', googleTrends: 1890, websiteTraffic: 4800, instagram: 2181, altInsightsIndex: 1.5, analystEstimate: 1.4 },
-          { name: 'Q1 2023', googleTrends: 2390, websiteTraffic: 3800, instagram: 2500, altInsightsIndex: 1.8, analystEstimate: 1.7 },
-          { name: 'Q2 2023', googleTrends: 3490, websiteTraffic: 4300, instagram: 2800, altInsightsIndex: 1.7, analystEstimate: 1.6 },
-          { name: 'Q3 2023', googleTrends: 3000, websiteTraffic: 4100, instagram: 2600, altInsightsIndex: 1.9, analystEstimate: 1.8 },
+          { name: 'Q2 2022', "Google Trends": 2000, "Website Traffic": 9800, instagram: 2290, altInsightsIndex: 1.4, analystEstimate: 1.3 },
+          { name: 'Q3 2022', "Google Trends": 2780, "Website Traffic": 3908, instagram: 2000, altInsightsIndex: 1.6, analystEstimate: 1.5 },
+          { name: 'Q4 2022', "Google Trends": 1890, "Website Traffic": 4800, instagram: 2181, altInsightsIndex: 1.5, analystEstimate: 1.4 },
+          { name: 'Q1 2023', "Google Trends": 2390, "Website Traffic": 3800, instagram: 2500, altInsightsIndex: 1.8, analystEstimate: 1.7 },
+          { name: 'Q2 2023', "Google Trends": 3490, "Website Traffic": 4300, instagram: 2800, altInsightsIndex: 1.7, analystEstimate: 1.6 },
+          { name: 'Q3 2023', "Google Trends": 3000, "Website Traffic": 4100, instagram: 2600, altInsightsIndex: 1.9, analystEstimate: 1.8 },
         ],
       });
     }, 1000);
   });
 };
+
+const formatBillions = (value) => `$${value.toFixed(2)}B`;
 
 const CompanyDetails = () => {
   const { ticker } = useParams();
@@ -95,11 +97,11 @@ const CompanyDetails = () => {
               {companyDetails.quarterlyData.map((quarter) => (
                 <TableRow key={quarter.quarter}>
                   <TableCell>{quarter.quarter}</TableCell>
-                  <TableCell>{quarter.googleTrends}</TableCell>
-                  <TableCell>{quarter.websiteTraffic}</TableCell>
+                  <TableCell>{quarter["Google Trends"]}</TableCell>
+                  <TableCell>{quarter["Website Traffic"]}</TableCell>
                   <TableCell>{quarter.instagram}</TableCell>
-                  <TableCell>${quarter.altInsightsIndex.toFixed(2)}</TableCell>
-                  <TableCell>${quarter.analystEstimate.toFixed(2)}</TableCell>
+                  <TableCell>{formatBillions(quarter.altInsightsIndex)}</TableCell>
+                  <TableCell>{formatBillions(quarter.analystEstimate)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
