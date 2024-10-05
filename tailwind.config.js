@@ -51,11 +51,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blue: {
-          900: "#003366",
-        },
-        gold: {
-          300: "#FFD700",
+        altinsights: {
+          darkBlue: "#002B49",
+          gold: "#FFD700",
+          lightBlue: "#005A8C",
         },
       },
       borderRadius: {
