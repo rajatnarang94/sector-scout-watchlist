@@ -42,6 +42,7 @@ const CompanyDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const sector = location.state?.sector || "Unknown Sector";
+  const fromWatchlist = location.state?.fromWatchlist || false;
 
   const { data: companyDetails, isLoading, error } = useQuery({
     queryKey: ["companyDetails", ticker],
@@ -55,14 +56,23 @@ const CompanyDetails = () => {
     return <p>No data available for this company.</p>;
   }
 
+  const handleBackClick = () => {
+    if (fromWatchlist) {
+      navigate("/watchlist");
+    } else {
+      navigate(`/sector/${sector}`, { state: { sector } });
+    }
+  };
+
   return (
     <div>
       <Button
         variant="ghost"
-        onClick={() => navigate(`/sector/${sector}`, { state: { sector } })}
+        onClick={handleBackClick}
         className="mb-4"
       >
-        <ArrowLeft className="mr-2 h-4 w-4" /> Back to {sector} Sector
+        <ArrowLeft className="mr-2 h-4 w-4" />
+        {fromWatchlist ? "Back to Watchlist" : `Back to ${sector} Sector`}
       </Button>
       <h2 className="text-2xl font-bold mb-4">{ticker}</h2>
       <CompanySummary chartData={companyDetails.chartData} />

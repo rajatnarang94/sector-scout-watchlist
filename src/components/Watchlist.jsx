@@ -40,7 +40,11 @@ const Watchlist = () => {
           {watchlistData.map((company) => (
             <TableRow key={company.ticker}>
               <TableCell>
-                <Link to={`/company/${company.ticker}`} className="text-blue-600 hover:underline">
+                <Link 
+                  to={`/company/${company.ticker}`} 
+                  state={{ fromWatchlist: true }}
+                  className="text-blue-600 hover:underline"
+                >
                   {company.ticker}
                 </Link>
               </TableCell>
