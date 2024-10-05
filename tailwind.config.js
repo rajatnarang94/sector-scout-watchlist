@@ -52,8 +52,8 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         altinsights: {
-          darkBlue: "#002B49",
-          gold: "#FFD700",
+          darkBlue: "#025379",
+          gold: "#CAB155",
           lightBlue: "#005A8C",
         },
       },
