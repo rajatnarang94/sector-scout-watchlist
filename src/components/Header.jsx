@@ -10,10 +10,10 @@ const Header = () => {
           <span className="text-2xl font-bold text-altinsights-darkBlue">Alt</span><span className="text-2xl font-bold text-altinsights-gold">Insights</span>
         </Link>
         <nav>
-          <Button asChild variant="ghost" className="text-black hover:text-altinsights-white">
+          <Button asChild variant="ghost" className="text-black hover:text-altinsights-gold">
             <Link to="/">Sector Search</Link>
           </Button>
-          <Button asChild variant="ghost" className="text-black hover:text-altinsights-white">
+          <Button asChild variant="ghost" className="text-black hover:text-altinsights-gold">
             <Link to="/watchlist">Watchlist</Link>
           </Button>
         </nav>
