@@ -54,6 +54,7 @@ module.exports = {
         altinsights: {
           darkBlue: "#025379",
           gold: "#CAB155",
+          white: "#FFF",
           lightBlue: "#005A8C",
         },
       },
