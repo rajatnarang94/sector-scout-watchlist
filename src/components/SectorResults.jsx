@@ -1,17 +1,16 @@
 import { useParams, useLocation, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 
 const fetchSectorData = async (sector) => {
   // This is a mock API call. Replace with actual API endpoint.
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
-        { ticker: "NKE", googleTrends: 5, instagramLikes: 10, websiteTraffic: 15, analystEstimate: 1.2, altInsightsIndex: 1.3, recommendation: "Buy", significantMovement: true },
-        { ticker: "LULU", googleTrends: 3, instagramLikes: 8, websiteTraffic: 12, analystEstimate: 0.9, altInsightsIndex: 0.85, recommendation: "Sell", significantMovement: false },
-        { ticker: "FOSL", googleTrends: -2, instagramLikes: -5, websiteTraffic: -8, analystEstimate: 0.3, altInsightsIndex: 0.31, recommendation: "Hold", significantMovement: true },
-        { ticker: "URBN", googleTrends: 1, instagramLikes: 2, websiteTraffic: 3, analystEstimate: 0.7, altInsightsIndex: 0.8, recommendation: "Buy", significantMovement: false },
+        { ticker: "NKE", googleTrends: 5, instagramLikes: 10, websiteTraffic: 15, analystEstimate: 1.2, altInsightsIndex: 1.3, recommendation: "Buy" },
+        { ticker: "LULU", googleTrends: 3, instagramLikes: 8, websiteTraffic: 12, analystEstimate: 0.9, altInsightsIndex: 0.85, recommendation: "Sell" },
+        { ticker: "FOSL", googleTrends: -2, instagramLikes: -5, websiteTraffic: -8, analystEstimate: 0.3, altInsightsIndex: 0.31, recommendation: "Hold" },
+        { ticker: "URBN", googleTrends: 1, instagramLikes: 2, websiteTraffic: 3, analystEstimate: 0.7, altInsightsIndex: 0.8, recommendation: "Buy" },
       ]);
     }, 1000);
   });
@@ -42,7 +41,6 @@ const SectorResults = () => {
             <TableHead>Analyst Estimate</TableHead>
             <TableHead>AltInsights Index</TableHead>
             <TableHead>Recommendation</TableHead>
-            <TableHead>Movement</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -63,11 +61,6 @@ const SectorResults = () => {
               <TableCell>${company.analystEstimate.toFixed(2)}</TableCell>
               <TableCell>${company.altInsightsIndex.toFixed(2)}</TableCell>
               <TableCell>{company.recommendation}</TableCell>
-              <TableCell>
-                {company.significantMovement && (
-                  <Badge variant="destructive">Significant</Badge>
-                )}
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
