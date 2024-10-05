@@ -49,6 +49,10 @@ const CompanyDetails = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
+  if (!companyDetails || !companyDetails.quarterlyData) {
+    return <p>No data available for this company.</p>;
+  }
+
   const latestData = companyDetails.quarterlyData[companyDetails.quarterlyData.length - 2]; // Excluding prediction
   const recommendation = latestData.altInsightsIndex > latestData.analystEstimate ? "Buy" :
     latestData.altInsightsIndex < latestData.analystEstimate ? "Sell" : "Hold";
