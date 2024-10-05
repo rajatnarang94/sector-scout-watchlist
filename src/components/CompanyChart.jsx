@@ -2,6 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const formatBillions = (value) => `$${value.toFixed(2)}B`;
+const formatPercentage = (value) => `${value}%`;
 
 const CompanyChart = ({ data }) => {
   return (
@@ -11,7 +12,8 @@ const CompanyChart = ({ data }) => {
         <XAxis dataKey="name" />
         <YAxis 
           yAxisId="left" 
-          label={{ value: 'Score (0-100)', angle: -90, position: 'insideLeft' }}
+          tickFormatter={formatPercentage}
+          label={{ value: 'Percentage Change', angle: -90, position: 'insideLeft' }}
         />
         <YAxis 
           yAxisId="right" 
@@ -24,7 +26,7 @@ const CompanyChart = ({ data }) => {
             if (name === 'AltInsights Index' || name === 'Analyst Estimate') {
               return [formatBillions(value), name];
             }
-            return [value, name];
+            return [formatPercentage(value), name];
           }}
         />
         <Legend />
