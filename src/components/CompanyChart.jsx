@@ -1,8 +1,8 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const formatBillions = (value) => `$${value.toFixed(2)}B`;
-const formatPercentage = (value) => `${value}%`;
+const formatBillions = (value) => (value === 0 ? '' : `$${value.toFixed(2)}B`);
+const formatPercentage = (value) => (value === 0 ? '' : `${value}%`);
 
 const CompanyChart = ({ data }) => {
   return (
@@ -13,11 +13,14 @@ const CompanyChart = ({ data }) => {
         <YAxis 
           yAxisId="left" 
           tickFormatter={formatPercentage}
+          allowDecimals={false}
+          domain={[0, 'dataMax']}
         />
         <YAxis 
           yAxisId="right" 
           orientation="right" 
           tickFormatter={formatBillions}
+          domain={[0, 'dataMax']}
         />
         <Tooltip 
           formatter={(value, name) => {
