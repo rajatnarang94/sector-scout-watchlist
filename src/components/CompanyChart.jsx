@@ -13,13 +13,11 @@ const CompanyChart = ({ data }) => {
         <YAxis 
           yAxisId="left" 
           tickFormatter={formatPercentage}
-          label={{ value: 'Percentage Change', angle: -90, position: 'insideLeft' }}
         />
         <YAxis 
           yAxisId="right" 
           orientation="right" 
           tickFormatter={formatBillions}
-          label={{ value: 'Billion $', angle: 90, position: 'insideRight' }}
         />
         <Tooltip 
           formatter={(value, name) => {
