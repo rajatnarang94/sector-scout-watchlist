@@ -1,10 +1,7 @@
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import CompanyChart from "./CompanyChart";
 import CompanySummary from "./CompanySummary";
 import QuarterlyDataTable from "./QuarterlyDataTable";
 
@@ -40,8 +37,6 @@ const fetchCompanyDetails = async (ticker) => {
 const CompanyDetails = () => {
   const { ticker } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const sector = location.state?.sector || "Unknown Sector";
 
   const { data: companyDetails, isLoading, error } = useQuery({
     queryKey: ["companyDetails", ticker],
@@ -59,10 +54,10 @@ const CompanyDetails = () => {
     <div>
       <Button
         variant="ghost"
-        onClick={() => navigate(`/sector/${sector}`, { state: { sector } })}
+        onClick={() => navigate("/watchlist")}
         className="mb-4"
       >
-        <ArrowLeft className="mr-2 h-4 w-4" /> Back to {sector} Sector
+        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Watchlist
       </Button>
       <h2 className="text-2xl font-bold mb-4">{ticker}</h2>
       <CompanySummary chartData={companyDetails.chartData} />
