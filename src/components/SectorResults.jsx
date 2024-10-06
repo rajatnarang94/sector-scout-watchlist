@@ -7,10 +7,10 @@ const fetchSectorData = async (sector) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
-        { ticker: "NKE", googleTrends: 5, instagramLikes: 10, websiteTraffic: 15, analystEstimate: 1.2, altInsightsIndex: 1.3, recommendation: "Buy" },
-        { ticker: "LULU", googleTrends: 3, instagramLikes: 8, websiteTraffic: 12, analystEstimate: 0.9, altInsightsIndex: 0.85, recommendation: "Sell" },
-        { ticker: "FOSL", googleTrends: -2, instagramLikes: -5, websiteTraffic: -8, analystEstimate: 0.3, altInsightsIndex: 0.31, recommendation: "Hold" },
-        { ticker: "URBN", googleTrends: 1, instagramLikes: 2, websiteTraffic: 3, analystEstimate: 0.7, altInsightsIndex: 0.8, recommendation: "Buy" },
+        { ticker: "NKE", googleTrends: 5, instagramLikes: 10, websiteTraffic: 15, analystEstimate: 1.2, altInsightsIndex: 1.3, actualEarnings: 1.32, recommendation: "Buy" },
+        { ticker: "LULU", googleTrends: 3, instagramLikes: 8, websiteTraffic: 12, analystEstimate: 0.9, altInsightsIndex: 0.85, actualEarnings: 0.84, recommendation: "Sell" },
+        { ticker: "FOSL", googleTrends: -2, instagramLikes: -5, websiteTraffic: -8, analystEstimate: 0.3, altInsightsIndex: 0.31, actualEarnings: 0.31, recommendation: "Hold" },
+        { ticker: "URBN", googleTrends: 1, instagramLikes: 2, websiteTraffic: 3, analystEstimate: 0.7, altInsightsIndex: 0.8, actualEarnings: 0.79, recommendation: "Buy" },
       ]);
     }, 1000);
   });
@@ -30,7 +30,7 @@ const SectorResults = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{sector} Sector Results</h2>
+      <h2 className="text-2xl font-bold mb-4">Tickers with significant movement in {sector} Sector</h2>
       <Table>
         <TableHeader>
           <TableRow>
@@ -40,6 +40,7 @@ const SectorResults = () => {
             <TableHead>Website Traffic</TableHead>
             <TableHead>Analyst Estimate</TableHead>
             <TableHead>AltInsights Index</TableHead>
+            <TableHead>Actual Earnings</TableHead>
             <TableHead>Recommendation</TableHead>
           </TableRow>
         </TableHeader>
@@ -60,6 +61,7 @@ const SectorResults = () => {
               <TableCell>{company.websiteTraffic}%</TableCell>
               <TableCell>${company.analystEstimate.toFixed(2)}</TableCell>
               <TableCell>${company.altInsightsIndex.toFixed(2)}</TableCell>
+              <TableCell>${company.actualEarnings.toFixed(2)}</TableCell>
               <TableCell>{company.recommendation}</TableCell>
             </TableRow>
           ))}

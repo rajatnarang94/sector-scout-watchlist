@@ -25,6 +25,7 @@ const QuarterlyDataTable = ({ quarterlyData }) => {
                 <TableHead>Instagram</TableHead>
                 <TableHead>AltInsights Index</TableHead>
                 <TableHead>Analyst Estimate</TableHead>
+                <TableHead>Actual Earnings</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -36,6 +37,7 @@ const QuarterlyDataTable = ({ quarterlyData }) => {
                   <TableCell>{formatPercentage(quarter.instagram)}</TableCell>
                   <TableCell>{formatBillions(quarter.altInsightsIndex)}</TableCell>
                   <TableCell>{formatBillions(quarter.analystEstimate)}</TableCell>
+                  <TableCell>{formatBillions(quarter.actualEarnings)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

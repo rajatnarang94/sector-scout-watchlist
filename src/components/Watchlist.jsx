@@ -7,9 +7,9 @@ const fetchWatchlistData = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
-        { ticker: "AAPL", googleTrends: 2, instagramLikes: 5, websiteTraffic: 8 },
-        { ticker: "GOOGL", googleTrends: 4, instagramLikes: 7, websiteTraffic: 10 },
-        { ticker: "AMZN", googleTrends: 3, instagramLikes: 6, websiteTraffic: 9 },
+        { ticker: "AAPL", googleTrends: 2, instagramLikes: 5, websiteTraffic: 8, analystEstimate: "$2.00B", altInsightsIndex: "$1.90B", actualEarnings: "$2.02B" },
+        { ticker: "GOOGL", googleTrends: 4, instagramLikes: 7, websiteTraffic: 10, analystEstimate: "$2.00B", altInsightsIndex: "$1.90B", actualEarnings: "$2.02B" },
+        { ticker: "AMZN", googleTrends: 3, instagramLikes: 6, websiteTraffic: 9, analystEstimate: "$2.00B", altInsightsIndex: "$1.90B", actualEarnings: "$2.02B" },
       ]);
     }, 1000);
   });
@@ -34,6 +34,9 @@ const Watchlist = () => {
             <TableHead>Google Trends</TableHead>
             <TableHead>Instagram Likes</TableHead>
             <TableHead>Website Traffic</TableHead>
+            <TableHead>Analyst Estimate</TableHead>
+            <TableHead>AltInsights Index</TableHead>
+            <TableHead>Actual Earnings</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -51,6 +54,9 @@ const Watchlist = () => {
               <TableCell>{company.googleTrends}%</TableCell>
               <TableCell>{company.instagramLikes}%</TableCell>
               <TableCell>{company.websiteTraffic}%</TableCell>
+              <TableCell>{company.analystEstimate}</TableCell>
+              <TableCell>{company.altInsightsIndex}</TableCell>
+              <TableCell>{company.actualEarnings}</TableCell>
             </TableRow>
           ))}
         </TableBody>

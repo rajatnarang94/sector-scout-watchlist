@@ -24,7 +24,7 @@ const CompanyChart = ({ data }) => {
         />
         <Tooltip 
           formatter={(value, name) => {
-            if (name === 'AltInsights Index' || name === 'Analyst Estimate') {
+            if (name === 'AltInsights Index' || name === 'Analyst Estimate' || name === 'Actual Earnings') {
               return [formatBillions(value), name];
             }
             return [formatPercentage(value), name];
@@ -36,6 +36,7 @@ const CompanyChart = ({ data }) => {
         <Line yAxisId="left" type="monotone" dataKey="instagram" name="Instagram" stroke="#ffc658" />
         <Line yAxisId="right" type="monotone" dataKey="altInsightsIndex" name="AltInsights Index" stroke="#ff7300" />
         <Line yAxisId="right" type="monotone" dataKey="analystEstimate" name="Analyst Estimate" stroke="#ff0000" />
+        <Line yAxisId="right" type="monotone" dataKey="actualEarnings" name="Actual Earnings" stroke="#ddc57e" />
       </LineChart>
     </ResponsiveContainer>
   );
